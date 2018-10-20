@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电信讲座</title>
+</head>
+<body>
+    <header>
+        <h3>讲座</h3>
+    </header>
+    <div>
+        {% for i in dicts %}
+        <h5>第{{i.id}}项</h5><br>{{i.title}}<br>时间：{{i.time}}<br>地点：{{i.place}}<br>主讲人：{{i.speaker}}<br>
+        {% endfor %}
+    </div>
+    <header>
+        <h3>搜索</h3>
+    </header>
+    <div>
+        <p>请在下方文本框中输入要检索标题的全部或部分内容</p>
+    </div>
+    <form method='post'>
+        {% csrf_token %}
+        <label>
+            <input type="text" name="key"><br>
+        </label>
+        {% for x in dictss %}
+            <h5>第{{x.id}}项</h5><br>{{x.title}}<br>时间：{{x.time}}<br>地点：{{x.place}}<br>主讲人：{{x.speaker}}<br>
+        {% empty %}
+            <p>什么都还没有搜索到</p>
+        {% endfor %}
+        <input type="submit" value="搜索"><br>
+    </form>
+</body>
+</html>
